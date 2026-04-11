@@ -1,4 +1,5 @@
-def anonymize(value: str)->str:
+from faker import Faker
+def maskirovanie(value: str)->str:
     ValidAdress = ["gmail.com" , "mail.ru" , "yandex.ru" , "ya.ru", "outlook.com", "icloud.com"]
     if not value:
         return "***"
