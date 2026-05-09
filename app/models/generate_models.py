@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List
 from enum import Enum
 
@@ -15,5 +15,5 @@ class FieldSchema(BaseModel):
     name: str
     type: FieldType
 class GenerateRequest(BaseModel):
-    rows: int
-    fields: List[FieldSchema]
+    rows: int = Field(..., ge=1, le=500_000)
+    fields: List[FieldSchema] = Field(..., min_items=1)
