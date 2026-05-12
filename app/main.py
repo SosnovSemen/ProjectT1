@@ -13,4 +13,8 @@ app.mount("/static",StaticFiles(directory = "app/static"), name = "static")
 
 @app.get("/")
 def root():
-    return FileResponse("app/static/test.html")
+    return FileResponse("app/static/general.html")
+
+@app.get("/generate")
+def generate_page():
+	return FileResponse("app/static/generate.html")

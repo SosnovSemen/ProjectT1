@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>DataSynth | Главная</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .mode-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .mode-btn {
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+			text-decoration: none;
+			display: inline-block;
+        }
+        .welcome {
+            text-align: center;
+            margin: 3rem 0;
+			font-size: 2rem;
+			color: white;
+			font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>⚡ DataSynth</h1>
+        <p class="welcome">Выберите режим работы</p>
+    </div>
+    <div class="mode-buttons">
+        <a href="/generate" class="btn-primary mode-btn">🎲 Генерация данных</a>
+        <a href="/anonymize" class="btn-primary mode-btn">🔒 Обезличивание CSV</a>
+    </div>
+</div>
+</body>
+</html>
