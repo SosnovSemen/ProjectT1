@@ -8,11 +8,11 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>⚡ DataSynth</h1>
+        <h1>DataSynth</h1>
     </div>
 
     <div class="card">
-        <div class="card-title">📋 Конфигурация полей</div>
+        <div class="card-title">Конфигурация полей</div>
         <div id="fieldsContainer"></div>
         <button class="btn-add" id="addFieldBtn">+ Добавить поле</button>
     </div>
@@ -20,23 +20,23 @@
 
 
     <div class="card">
-        <div class="card-title">⚙️ Параметры</div>
+        <div class="card-title">Параметры</div>
         <div class="input-group">
             <div class="input-field">
                 <label>Количество строк</label>
                 <input type="number" id="rowsCount" value="5" min="1">
             </div>
-            <button class="btn-primary" id="generateBtn">🎲 Сгенерировать</button>
+            <button class="btn-primary" id="generateBtn">Сгенерировать</button>
         </div>
     </div>
 
 
     <div class="card" id="resultCard" style="display: none;">
         <div class="result-header">
-            <div class="card-title" style="margin-bottom: 0;">📊 Результат</div>
+            <div class="card-title" style="margin-bottom: 0;">Результат ( Первые 5 строк таблицы )</div>
             <div class="download-buttons">
-                <button class="btn-download" id="downloadCsvBtn" style="display: none;">📥 Скачать CSV</button>
-                <button class="btn-download" id="downloadJsonBtn" style="display: none;">📥 Скачать JSON</button>
+                <button class="btn-download" id="downloadCsvBtn" style="display: none;">Скачать CSV</button>
+                <button class="btn-download" id="downloadJsonBtn" style="display: none;">Скачать JSON</button>
             </div>
         </div>
         <div id="resultArea"></div>
