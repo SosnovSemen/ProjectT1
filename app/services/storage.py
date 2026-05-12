@@ -21,7 +21,5 @@ def GetDataStorage (file_id: str) -> List[Dict[str,Any]] | None:
 	return temp_storage.get(file_id)
 
 def DeleteDataStorage (file_id: str):
-	"""
-	Немедленно удаляет данные из хранилища.
-	"""
+# Немедленно удаляет данные из хранилища.
 	temp_storage.pop(file_id, None)
