@@ -3,6 +3,8 @@ from fastapi.staticfiles import StaticFiles
 from app.routers import generate
 from fastapi import FastAPI
 
+# Главный модуль приложения. Подключает роутеры, монтирует статику.
+
 app = FastAPI()
 
 app.include_router(generate.router) 

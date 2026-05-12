@@ -9,10 +9,14 @@ from fastapi import APIRouter, HTTPException, Query
 from app.services.generator import GenerateData
 from app.models.generate_models import GenerateRequest
 
+
+
 router = APIRouter(prefix = "/generate", tags = ['generation'])
 
+# Эндпоинт для генерации данных и получения file_id.
 @router.post('/')
 def generate(request: GenerateRequest):
+# Генерирует все данные, исходя из запроса, сохраняет их во временное хранилище и возвращает file_id и превью таблицы (превые 5 строк).
 	try:
 		data = GenerateData(request.rows, request.fields)
 	except ValueError as e:
@@ -24,18 +28,20 @@ def generate(request: GenerateRequest):
 	return {
 		"file_id": file_id,
 		"headers": headers,
-		"preview": preview_table[:5],
-		"total_rows":len(data)
+		"data": preview_table[:5],
 	}
 
+# Эндпоинт для скачивания файла в формате CSV и JSON.
 @router.get('/download/{file_id}')
 def DownloadFile(file_id: str, format: str = Query("csv", pattern = "^(csv|json)$")):
+# Скачивает ранее сгенерированные данные в указанном формате.
 	data = GetDataStorage(file_id)
 	if data is None:
 		raise HTTPException(status_code = 404, detail = "File not found or expired")
 	if not data:
 		raise HTTPException(status_code = 400, detail = "Empty Data")
 	headers = list(data[0].keys())
+	# Формирование CSV.
 	if format == "csv":
 		output = io.StringIO()
 		writer = csv.writer(output, delimiter=',', quoting = csv.QUOTE_MINIMAL)
@@ -46,7 +52,8 @@ def DownloadFile(file_id: str, format: str = Query("csv", pattern = "^(csv|json)
 		content = output.getvalue().encode("utf-8-sig")
 		media_type = "text/csv"
 		filename = f"data_{file_id}.csv"
-	else:
+	# Формирование JSON.
+	else: # format == "json"
 		result = {"headers": headers, "data": data}
 		content = json.dumps(result, ensure_ascii=False, indent=2).encode("utf-8")
 		media_type = "application/json"

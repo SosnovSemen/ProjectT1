@@ -3,8 +3,12 @@ from faker import Faker
 import random
 from app.models.generate_models import FieldType, FieldSchema
 
+# Модуль генерации синтетических данных.
+# Использует библиотеку Faker для создания реалистичных строк.
+
 fake = Faker('ru_RU')
 
+# Функции-генераторы для каждого типа.
 def GenerateFullName() -> str:
     return fake.name()
 def GenerateNumber() -> int:
@@ -22,6 +26,7 @@ def GenerateJob() -> str:
 def GenerateCompany() -> str:
     return fake.company()
 
+# Словарь маршрутизации: тип -> соответствующая функция-генератор.
 GENERATORS = {
         FieldType.FullName: GenerateFullName,
         FieldType.Number: GenerateNumber,
@@ -34,12 +39,14 @@ GENERATORS = {
         }
 
 def GenerateValue(field_type: FieldType):
+# По нужному типу вызывает соответствующий генератор.
     func = GENERATORS.get(field_type)
     if func == None:
         raise ValueError(f"Unknown type: {field_type}")
     return func()
 
 def GenerateData(rows: int, schema: List[FieldSchema])->List[dict]:
+# Генерирует полную таблицу данных. Каждый словарь с списке - строка таблицы.
     data = []
     for i in range(rows):
         row = {}
