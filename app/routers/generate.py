@@ -23,7 +23,7 @@ def generate(request: GenerateRequest):
 		raise HTTPException(status_code = 400, detail=str(e))
 	headers = [field.name for field in request.fields]
 	file_id = str(uuid.uuid4())
-	StorageData(file_id, data, 40)
+	StorageData(file_id, data, 180)
 	preview_table = [[row[head] for head in headers] for row in data]
 	return {
 		"file_id": file_id,
